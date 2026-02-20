@@ -1,0 +1,27 @@
+version: "3"
+
+vars:
+  SCRIPT: "main.R"
+
+tasks:
+  format:
+    desc: Format R code using styler
+    cmds:
+      - Rscript -e "styler::style_dir('.')"
+
+  lint:
+    desc: Lint R code using lintr
+    cmds:
+      - Rscript -e "lintr::lint_dir('.')"
+
+  run:
+    desc: Run the main R script
+    cmds:
+      - Rscript "{{.SCRIPT}}"
+
+  all:
+    desc: Format, lint, and run
+    deps:
+      - format
+      - lint
+      - run
