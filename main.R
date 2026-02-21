@@ -1,4 +1,4 @@
-if(!require("pacman")) {
+if (!require("pacman")) {
   install.packages("pacman")
   library(pacman)
 }
@@ -36,13 +36,14 @@ library(tidyverse)
 # helper: simple mode (lowercase name)
 get_mode <- function(v) {
   v <- v[!is.na(v)]
-  if (length(v) == 0) return(NA_character_)
+  if (length(v) == 0) {
+    return(NA_character_)
+  }
   ux <- unique(v)
   ux[which.max(tabulate(match(v, ux)))]
 }
 
 dt_clean <- dt |>
-  
   # 1) trust federal government
   mutate(
     trust_clean = case_when(
@@ -54,14 +55,14 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     trust_numeric = ifelse(trust_federal_government %in% 1:5,
-                           trust_federal_government, NA_real_),
+      trust_federal_government, NA_real_
+    ),
     trust_binary = case_when(
-      trust_federal_government %in% c(1,2) ~ 1,
-      trust_federal_government %in% c(4,5) ~ 0,
+      trust_federal_government %in% c(1, 2) ~ 1,
+      trust_federal_government %in% c(4, 5) ~ 0,
       TRUE ~ NA_real_
     )
   ) |>
-  
   # 2) government run by big interests
   mutate(
     big_interests_clean = case_when(
@@ -70,9 +71,9 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     big_interests_numeric = ifelse(government_run_by_big_interests %in% 1:2,
-                                   government_run_by_big_interests, NA_real_)
+      government_run_by_big_interests, NA_real_
+    )
   ) |>
-  
   # 3) government wastes tax money
   mutate(
     waste_clean = case_when(
@@ -82,21 +83,20 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     waste_numeric = ifelse(government_wastes_tax_money %in% 1:3,
-                           government_wastes_tax_money, NA_real_)
+      government_wastes_tax_money, NA_real_
+    )
   ) |>
-  
   # 4) household income
   mutate(
     income_clean = ifelse(household_income %in% 1:28, household_income, NA_real_),
     income_category = case_when(
-      household_income %in% 1:8  ~ "Under $25,000",
+      household_income %in% 1:8 ~ "Under $25,000",
       household_income %in% 9:14 ~ "$25,000-$49,999",
       household_income %in% 15:22 ~ "$50,000-$99,999",
       household_income %in% 23:28 ~ "$100,000+",
       TRUE ~ NA_character_
     )
   ) |>
-  
   # 5) race / ethnicity
   mutate(
     race_clean = case_when(
@@ -109,22 +109,21 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     )
   ) |>
-  
   # 6) educational attainment
   mutate(
     education_clean = ifelse(educational_attainment %in% 1:16 |
-                               educational_attainment == 95,
-                             educational_attainment, NA_real_),
+      educational_attainment == 95,
+    educational_attainment, NA_real_
+    ),
     education_category = case_when(
-      educational_attainment %in% 1:8  ~ "Less than high school",
-      educational_attainment == 9   ~ "High school graduate",
+      educational_attainment %in% 1:8 ~ "Less than high school",
+      educational_attainment == 9 ~ "High school graduate",
       educational_attainment %in% 10:12 ~ "Some college/Associate",
-      educational_attainment == 13  ~ "Bachelor's degree",
+      educational_attainment == 13 ~ "Bachelor's degree",
       educational_attainment %in% 14:16 ~ "Graduate degree",
       TRUE ~ NA_character_
     )
   ) |>
-  
   # 7) ideological self-placement
   mutate(
     ideology_clean = case_when(
@@ -138,9 +137,9 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     ideology_numeric = ifelse(ideological_self_placement %in% 1:7,
-                              ideological_self_placement, NA_real_)
+      ideological_self_placement, NA_real_
+    )
   ) |>
-  
   # 8) approval of congress
   mutate(
     congress_approval_clean = case_when(
@@ -151,14 +150,13 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     congress_approval_numeric = ifelse(approval_of_congress %in% 1:4,
-                                       approval_of_congress, NA_real_)
+      approval_of_congress, NA_real_
+    )
   ) |>
-  
   # 9) age
   mutate(
     age_clean = ifelse(age >= 18 & age <= 80, age, NA_real_)
   ) |>
-  
   # 10) sex
   mutate(
     sex_clean = case_when(
@@ -167,7 +165,6 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     )
   ) |>
-  
   # 11) marital status
   mutate(
     marital_clean = case_when(
@@ -180,13 +177,12 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     marital_simple = case_when(
-      marital_status %in% c(1,2) ~ "Married",
-      marital_status %in% c(3,4,5) ~ "Previously married",
+      marital_status %in% c(1, 2) ~ "Married",
+      marital_status %in% c(3, 4, 5) ~ "Previously married",
       marital_status == 6 ~ "Never married",
       TRUE ~ NA_character_
     )
   ) |>
-  
   # 12) national economy retrospective
   mutate(
     economy_clean = case_when(
@@ -198,9 +194,9 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     economy_numeric = ifelse(national_economy_retrospective %in% 1:5,
-                             national_economy_retrospective, NA_real_)
+      national_economy_retrospective, NA_real_
+    )
   ) |>
-  
   # 13) elections make government responsive
   mutate(
     elections_responsive_clean = case_when(
@@ -210,9 +206,9 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     elections_responsive_numeric = ifelse(elections_make_government_responsive %in% 1:3,
-                                          elections_make_government_responsive, NA_real_)
+      elections_make_government_responsive, NA_real_
+    )
   ) |>
-  
   # 14) generalized social trust
   mutate(
     social_trust_clean = case_when(
@@ -224,9 +220,9 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     social_trust_numeric = ifelse(generalized_social_trust %in% 1:5,
-                                  generalized_social_trust, NA_real_)
+      generalized_social_trust, NA_real_
+    )
   ) |>
-  
   # 15) approval of congress (binary)
   mutate(
     congress_binary_clean = case_when(
@@ -235,9 +231,9 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     congress_binary_numeric = ifelse(approval_of_congress_binary %in% 1:2,
-                                     approval_of_congress_binary, NA_real_)
+      approval_of_congress_binary, NA_real_
+    )
   ) |>
-  
   # 16) party identification
   mutate(
     party_clean = case_when(
@@ -251,9 +247,9 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     party_numeric = ifelse(party_identification %in% 1:7,
-                           party_identification, NA_real_)
+      party_identification, NA_real_
+    )
   ) |>
-  
   # 17) registered state
   mutate(
     state_clean = ifelse(registered_state > 0, registered_state, NA_real_)
@@ -261,16 +257,18 @@ dt_clean <- dt |>
 
 # filter to complete cases on key variables
 dt_complete <- dt_clean |>
-  filter(!is.na(trust_numeric),
-         !is.na(income_clean),
-         !is.na(race_clean),
-         !is.na(education_clean))
+  filter(
+    !is.na(trust_numeric),
+    !is.na(income_clean),
+    !is.na(race_clean),
+    !is.na(education_clean)
+  )
 
 # diagnostics
 cat("Original rows:", nrow(dt), "\n")
 cat("Clean rows:", nrow(dt_complete), "\n")
 cat("Rows removed:", nrow(dt) - nrow(dt_complete), "\n")
-cat("Percent retained:", round(nrow(dt_complete)/nrow(dt)*100, 1), "%\n")
+cat("Percent retained:", round(nrow(dt_complete) / nrow(dt) * 100, 1), "%\n")
 
 # quick summary
 print(summary(dt_complete |> select(trust_numeric, income_clean, age_clean, ideology_numeric)))
