@@ -2,8 +2,6 @@
 
 How does trust in government vary by income, race, and education?
 
----
-
 ## Variables
 
 | # | ANES Variable | Variable Label | Role | Description | Question | Values |
@@ -25,30 +23,6 @@ How does trust in government vary by income, race, and education?
 | 15 | V241127 | Approval of Congress (binary) | Robustness | Approve/disapprove Congress | Do you approve or disapprove of the way the U.S. Congress has been handling its job? | -9. Refused; -8. Don't know; -1. Inapplicable; 1. Approve; 2. Disapprove |
 | 16 | V242058x | Registered state | Control | State respondent is registered to vote | — | -1. Inapplicable; State numeric codes (1–56) |
 | 17 | V241227x | Party identification (summary) | Control | Respondent's party identification | — | -9. Refused; -8. Don't know; -4. Error; 1. Strong Democrat; 2. Not very strong Democrat; 3. Independent-Democrat; 4. Independent; 5. Independent-Republican; 6. Not very strong Republican; 7. Strong Republican |
-
----
-
-## Variable Descriptions
-
-| ANES Variable | Variable Label | Type | Description / Range / Categories | Notes |
-|--------------|----------------|------|-----------------------------------|-------|
-| V241229 | Trust federal government | Ordinal (5-point) | How often trust federal government to do what is right | Primary dependent variable for trust analysis |
-| V241231 | Government run by big interests | Ordinal | Whether government is run by a few big interests or for all people | Captures political cynicism |
-| V241232 | Government wastes tax money | Ordinal | Perception of government efficiency | Alternate trust indicator |
-| V241566x | Household income | Ordinal categorical | Household income brackets | Key socioeconomic predictor |
-| V241501x | Race / ethnicity (summary) | Categorical | Non-Hispanic White; Non-Hispanic Black; Hispanic; Non-Hispanic Other | — |
-| V241463 | Educational attainment | Ordinal | Less than high school → Graduate degree | — |
-| V241177 | Ideological self-placement | Ordinal | Extremely liberal → Extremely conservative | — |
-| V241129x | Approval of Congress | Ordinal | Summary approval/disapproval | — |
-| V241458x | Age | Continuous | Years | — |
-| V241550 | Sex | Binary | Male; Female | — |
-| V241461x | Marital status | Categorical | Married; Widowed; Divorced/Separated; Never married | — |
-| V241294x | National economy retrospective | Ordinal | Perception of economic change | — |
-| V241235 | Elections make government responsive | Ordinal | Belief in democratic responsiveness | — |
-| V241234 | Generalized social trust | Ordinal | Trust in other people | — |
-| V241127 | Approval of Congress (binary) | Binary | Approve vs. disapprove Congress | Used for robustness checks alongside summary measure |
-
----
 
 ## Data Cleaning
 

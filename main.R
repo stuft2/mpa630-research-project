@@ -225,12 +225,12 @@ dt_clean <- dt |>
   ) |>
   # 15) approval of congress (binary)
   mutate(
-    congress_binary_clean = case_when(
+    congress_approval_category = case_when(
       approval_of_congress_binary == 1 ~ "Approve",
-      approval_of_congress_binary == 2 ~ "Disapprove",
+      approval_of_congress_binary == 0 ~ "Disapprove",
       TRUE ~ NA_character_
     ),
-    congress_binary_numeric = ifelse(approval_of_congress_binary %in% 1:2,
+    congress_binary = ifelse(approval_of_congress_binary %in% 1:2,
       approval_of_congress_binary, NA_real_
     )
   ) |>
