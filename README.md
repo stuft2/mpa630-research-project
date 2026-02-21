@@ -25,7 +25,26 @@ How does trust in government vary by income, race, and education?
 | 17 | V242058x | Registered state | Control | State respondent is registered to vote | — | -1. Inapplicable; State numeric codes (1–56) |
 | 18 | V241227x | Party identification (summary) | Control | Respondent's party identification | — | -9. Refused; -8. Don't know; -4. Error; 1. Strong Democrat; 2. Not very strong Democrat; 3. Independent-Democrat; 4. Independent; 5. Independent-Republican; 6. Not very strong Republican; 7. Strong Republican |
 
+## Variable Descriptions
 
+| ANES Variable | Variable Label | Type | Description / Range / Categories | Notes |
+|--------------|----------------|------|-----------------------------------|-------|
+| V241229 | Trust federal government | Ordinal (5-point) | How often trust federal government to do what is right | Primary dependent variable for trust analysis |
+| V241231 | Government run by big interests | Ordinal | Whether government is run by a few big interests or for all people | Captures political cynicism |
+| V241232 | Government wastes tax money | Ordinal | Perception of government efficiency | Alternate trust indicator |
+| V241566x | Household income | Ordinal categorical | Household income brackets | Key socioeconomic predictor |
+| V241501x | Race / ethnicity (summary) | Categorical | Non-Hispanic White; Non-Hispanic Black; Hispanic; Non-Hispanic Other | — |
+| V241463 | Educational attainment | Ordinal | Less than high school → Graduate degree | — |
+| V241177 | Ideological self-placement | Ordinal | Extremely liberal → Extremely conservative | — |
+| V241129x | Approval of Congress | Ordinal | Summary approval/disapproval | — |
+| V241458x | Age | Continuous | Years | — |
+| V241551 | Gender identity | Categorical | Man; Woman; Nonbinary; Other | — |
+| V241550 | Sex | Binary | Male; Female | — |
+| V241461x | Marital status | Categorical | Married; Widowed; Divorced/Separated; Never married | — |
+| V241294x | National economy retrospective | Ordinal | Perception of economic change | — |
+| V241235 | Elections make government responsive | Ordinal | Belief in democratic responsiveness | — |
+| V241234 | Generalized social trust | Ordinal | Trust in other people | — |
+| V241127 | Approval of Congress (binary) | Binary | Approve vs. disapprove Congress | Used for robustness checks alongside summary measure |
 ## Cleaning the data
 
 Non-substantive responses were recoded as `NA`:
@@ -33,4 +52,6 @@ Non-substantive responses were recoded as `NA`:
   - `-8` = Don’t know
   - `-1` = Inapplicable
 
+Describe the step-by-step process of how you cleaned your data 
+First, I used the previous R code that I could manipulate to use the ANES data. I rewrote my name in the Code for Stats Class, with my email and the date. I also set up the system using the “pacman” package. I then loaded the CSV data into a file called dt. I then selected the 18 variables I wanted to learn more about and placed them in a file called Anes. I then renamed the variable numbers with a new variable label. I used the codebook above to ensure I removed data that did not belong, such as -9, -8, -4, -2, -1, and 99. I combined trust data to show high trust or low trust. I combined income data to reduce the number of categories. I ran code to verify how much of the data I removed. I then reran a summary, glimpse, and names of my Anes data.
 
