@@ -2,6 +2,8 @@
 
 How does trust in government vary by income, race, and education?
 
+---
+
 ## Variables
 
 | # | ANES Variable | Variable Label | Role | Description | Question | Values |
@@ -15,19 +17,6 @@ How does trust in government vary by income, race, and education?
 | 7 | V241177 | Ideological self-placement | Control | Liberal–conservative scale | Where would you place yourself on this scale, or haven't you thought much about this? | -9. Refused; -4. Error; 1. Extremely liberal; 2. Liberal; 3. Slightly liberal; 4. Moderate; 5. Slightly conservative; 6. Conservative; 7. Extremely conservative; 99. Haven't thought much about this |
 | 8 | V241129x | Approval of Congress | Control | Job approval of U.S. Congress | — | -2. DK/RF; -1. Inapplicable; 1. Approve strongly; 2. Approve not strongly; 3. Disapprove not strongly; 4. Disapprove strongly |
 | 9 | V241458x | Age | Control | Respondent age | — | -2. Missing; 80. Eighty years old or older |
-<<<<<<< Updated upstream
-| 10 | V241551 | Gender identity | Control | Self-identified gender | What is your gender? | -9. Refused; -1. Inapplicable; 1. Man; 2. Woman; 3. Nonbinary; 4. Something else |
-| 11 | V241550 | Sex | Control | Self-reported sex | What is your sex? | -9. Refused; -4. Error; 1. Male; 2. Female |
-| 12 | V241461x | Marital status | Control | Current marital status | Are you now married, widowed, divorced, separated or never married? | -9. Refused; -1. Inapplicable; 1. Married: spouse present; 2. Married: spouse absent; 3. Widowed; 4. Divorced; 5. Separated; 6. Never married |
-| 13 | V241294x | National economy retrospective | Control | Economic perceptions | National economy better or worse in last year? | -4. Error; -2. DK/RF; 1. Gotten much better; 2. Gotten somewhat better; 3. Stayed about the same; 4. Gotten somewhat worse; 5. Gotten much worse |
-| 14 | V241235 | Elections make government responsive | Control | Democratic responsiveness | How much do you feel that having elections makes the government pay attention to what the people think? | -9. Refused; -8. Don't know; -1. Inapplicable; 1. A good deal; 2. Some; 3. Not much |
-| 15 | V241234 | Generalized social trust | Control | Interpersonal trust | Generally speaking, how often can you trust other people? | -9. Refused; -1. Inapplicable; 1. Always; 2. Most of the time; 3. About half the time; 4. Some of the time; 5. Never |
-| 16 | V241127 | Approval of Congress (binary) | Robustness | Approve/disapprove Congress | Do you approve or disapprove of the way the U.S. Congress has been handling its job? | -9. Refused; -8. Don't know; -1. Inapplicable; 1. Approve; 2. Disapprove |
-| 17 | V242058x | Registered state | Control | State respondent is registered to vote | — | -1. Inapplicable; State numeric codes (1–56) |
-| 18 | V241227x | Party identification (summary) | Control | Respondent's party identification | — | -9. Refused; -8. Don't know; -4. Error; 1. Strong Democrat; 2. Not very strong Democrat; 3. Independent-Democrat; 4. Independent; 5. Independent-Republican; 6. Not very strong Republican; 7. Strong Republican |
-
-## Variable Descriptions
-=======
 | 10 | V241550 | Sex | Control | Self-reported sex | What is your sex? | -9. Refused; -4. Error; 1. Male; 2. Female |
 | 11 | V241461x | Marital status | Control | Current marital status | Are you now married, widowed, divorced, separated or never married? | -9. Refused; -1. Inapplicable; 1. Married: spouse present; 2. Married: spouse absent; 3. Widowed; 4. Divorced; 5. Separated; 6. Never married |
 | 12 | V241294x | National economy retrospective | Control | Economic perceptions | National economy better or worse in last year? | -4. Error; -2. DK/RF; 1. Gotten much better; 2. Gotten somewhat better; 3. Stayed about the same; 4. Gotten somewhat worse; 5. Gotten much worse |
@@ -36,7 +25,10 @@ How does trust in government vary by income, race, and education?
 | 15 | V241127 | Approval of Congress (binary) | Robustness | Approve/disapprove Congress | Do you approve or disapprove of the way the U.S. Congress has been handling its job? | -9. Refused; -8. Don't know; -1. Inapplicable; 1. Approve; 2. Disapprove |
 | 16 | V242058x | Registered state | Control | State respondent is registered to vote | — | -1. Inapplicable; State numeric codes (1–56) |
 | 17 | V241227x | Party identification (summary) | Control | Respondent's party identification | — | -9. Refused; -8. Don't know; -4. Error; 1. Strong Democrat; 2. Not very strong Democrat; 3. Independent-Democrat; 4. Independent; 5. Independent-Republican; 6. Not very strong Republican; 7. Strong Republican |
->>>>>>> Stashed changes
+
+---
+
+## Variable Descriptions
 
 | ANES Variable | Variable Label | Type | Description / Range / Categories | Notes |
 |--------------|----------------|------|-----------------------------------|-------|
@@ -49,7 +41,6 @@ How does trust in government vary by income, race, and education?
 | V241177 | Ideological self-placement | Ordinal | Extremely liberal → Extremely conservative | — |
 | V241129x | Approval of Congress | Ordinal | Summary approval/disapproval | — |
 | V241458x | Age | Continuous | Years | — |
-| V241551 | Gender identity | Categorical | Man; Woman; Nonbinary; Other | — |
 | V241550 | Sex | Binary | Male; Female | — |
 | V241461x | Marital status | Categorical | Married; Widowed; Divorced/Separated; Never married | — |
 | V241294x | National economy retrospective | Ordinal | Perception of economic change | — |
@@ -57,23 +48,23 @@ How does trust in government vary by income, race, and education?
 | V241234 | Generalized social trust | Ordinal | Trust in other people | — |
 | V241127 | Approval of Congress (binary) | Binary | Approve vs. disapprove Congress | Used for robustness checks alongside summary measure |
 
+---
 
-## Describe the step-by-step process of how you cleaned your data 
 ## Data Cleaning
 
-Adapted existing R code for the ANES dataset, updating name, email, and date in the script header.
-Loaded the `pacman` package to manage dependencies.
-Imported the CSV data into an object called `dt`.
-Selected the 18 variables of interest and stored them in an object called `anes`.
-Renamed all variable numbers with descriptive variable labels.
-Removed non-substantive responses using the codebook, recoding the following values as `NA`:
+1. Adapted existing R code for the ANES dataset, updating name, email, and date in the script header.
+2. Loaded the `pacman` package to manage dependencies.
+3. Imported the CSV data into an object called `dt`.
+4. Selected the 17 variables of interest and stored them in an object called `anes`.
+5. Renamed all variable numbers with descriptive variable labels.
+6. Removed non-substantive responses using the codebook, recoding the following values as `NA`:
    - `-9` = Refused
    - `-8` = Don't know
    - `-4` = Error
    - `-2` = DK/RF
    - `-1` = Inapplicable
    - `99` = Haven't thought much about this
-Recoded trust variables into a binary measure: **High Trust** vs. **Low Trust**.
-Collapsed income categories to reduce the number of brackets.
-Ran verification code to assess how much data was removed after recoding.
-Reran `summary()`, `glimpse()`, and `names()` on the cleaned `anes` object to confirm results.
+7. Recoded trust variables into a binary measure: **High Trust** vs. **Low Trust**.
+8. Collapsed income categories to reduce the number of brackets.
+9. Ran verification code to assess how much data was removed after recoding.
+10. Reran `summary()`, `glimpse()`, and `names()` on the cleaned `anes` object to confirm results.
