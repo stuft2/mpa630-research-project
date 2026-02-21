@@ -1,6 +1,11 @@
+if(!require("pacman")) {
+  install.packages("pacman")
+  library(pacman)
+}
+p_load(tidyverse, dplyr, data.table, ggplot2, fastDummies, readxl)
+
 # 0) load your dataset for your project (whatever you chose in Assignment 1)
 anes <- read.csv("20250808.csv")
-library(dplyr)
 
 # 1) select 15 variables you are interested in AND
 # 2) rename these variables for something that makes sense:
@@ -11,14 +16,14 @@ data <- anes |>
     gov_wastes_tax_money = "V241232",
     household_income_cat = "V241566x",
     race_ethnicity_summary = "V241501x",
-    education_attainment = "V241509",
+    education_attainment = "V241463",
     party_id_7pt = "V241227x",
     ideology_7pt = "V241177",
     congress_approval = "V241129x",
     age = "V241632",
     gender = "V241551",
     sex = "V241550",
-    marital_status = "V241505",
+    marital_status = "V241459",
     natl_econ_retrospective = "V241294x",
     elections_responsive = "V241235",
     social_trust = "V241234"
@@ -27,7 +32,6 @@ data <- anes |>
 # 3) choose three variables to recode the values AND
 # 4) create three new variables (including at least a dummy and one
 # ifelse statement):
-library(dplyr)
 
 trust_items <- c(
   "trust_fed_gov",

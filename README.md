@@ -91,7 +91,7 @@ Type: Key independent variable
 Description: Respondent household income measured on a 28-category ordinal scale ranging from under $5,000 to $250,000 or more, with finer income gradations at lower and middle income levels.
 Notes: Includes standard ANES missing codes (refused, break-off, error, inapplicable). For primary analyses, income is treated as an ordered categorical variable; robustness checks may collapse categories into broader income bands.
 
-### V241507x – Race / ethnicity (summary)
+### V241501x – Race / ethnicity (summary)
 Type: Key independent variable  
 Description: Summary race/ethnicity: Non-Hispanic White, Non-Hispanic Black, Hispanic, Non-Hispanic Other.  
 Notes: Use summary race–ethnicity variable.
