@@ -255,6 +255,11 @@ dt_clean <- dt |>
     state_clean = ifelse(registered_state > 0, registered_state, NA_real_)
   )
 
+
+# drop raw columns
+dt_clean <- dt_clean |>
+  select(matches("_clean$|_numeric$|_binary$|_category$|_simple$"))
+
 # filter to complete cases on key variables
 dt_complete <- dt_clean |>
   filter(
