@@ -56,13 +56,24 @@ How does trust in government vary by income, race, and education?
 | V241235 | Elections make government responsive | Ordinal | Belief in democratic responsiveness | — |
 | V241234 | Generalized social trust | Ordinal | Trust in other people | — |
 | V241127 | Approval of Congress (binary) | Binary | Approve vs. disapprove Congress | Used for robustness checks alongside summary measure |
-## Cleaning the data
 
-Non-substantive responses were recoded as `NA`:
-  - `-9` = Refused
-  - `-8` = Don’t know
-  - `-1` = Inapplicable
 
-Describe the step-by-step process of how you cleaned your data 
-First, I used the previous R code that I could manipulate to use the ANES data. I rewrote my name in the Code for Stats Class, with my email and the date. I also set up the system using the “pacman” package. I then loaded the CSV data into a file called dt. I then selected the 18 variables I wanted to learn more about and placed them in a file called Anes. I then renamed the variable numbers with a new variable label. I used the codebook above to ensure I removed data that did not belong, such as -9, -8, -4, -2, -1, and 99. I combined trust data to show high trust or low trust. I combined income data to reduce the number of categories. I ran code to verify how much of the data I removed. I then reran a summary, glimpse, and names of my Anes data.
+## Describe the step-by-step process of how you cleaned your data 
+## Data Cleaning
 
+Adapted existing R code for the ANES dataset, updating name, email, and date in the script header.
+Loaded the `pacman` package to manage dependencies.
+Imported the CSV data into an object called `dt`.
+Selected the 18 variables of interest and stored them in an object called `anes`.
+Renamed all variable numbers with descriptive variable labels.
+Removed non-substantive responses using the codebook, recoding the following values as `NA`:
+   - `-9` = Refused
+   - `-8` = Don't know
+   - `-4` = Error
+   - `-2` = DK/RF
+   - `-1` = Inapplicable
+   - `99` = Haven't thought much about this
+Recoded trust variables into a binary measure: **High Trust** vs. **Low Trust**.
+Collapsed income categories to reduce the number of brackets.
+Ran verification code to assess how much data was removed after recoding.
+Reran `summary()`, `glimpse()`, and `names()` on the cleaned `anes` object to confirm results.
