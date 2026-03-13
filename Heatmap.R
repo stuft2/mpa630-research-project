@@ -6,6 +6,7 @@ library(ggplot2)
 library(dplyr)
 library(maps)
 library(viridis)
+install.packages("mapproj")
 
 # ── Load data ──────────────────────────────────────────────────────────────────
 df <- read.csv("anes_all_cleaned_vars.csv",
@@ -93,8 +94,8 @@ map1 <- ggplot(map_trust, aes(x = long, y = lat, group = group, fill = mean_trus
   ) +
   map_theme
 
-ggsave("graphs/heatmap1_mean_trust.png",
-       map1, width = 10, height = 6.5, dpi = 300)
+ggsave("heatmaps/mean_trust.png",
+       map1, width = 10, height = 6.5, dpi = 300, create.dir = TRUE)
 message("✅ Map 1 saved.")
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -119,8 +120,8 @@ map2 <- ggplot(map_trust, aes(x = long, y = lat, group = group, fill = pct_low))
   ) +
   map_theme
 
-ggsave("graphs/heatmap2_pct_low_trust.png",
-       map2, width = 10, height = 6.5, dpi = 300)
+ggsave("heatmaps/pct_low_trust.png",
+       map2, width = 10, height = 6.5, dpi = 300, create.dir = TRUE)
 message("✅ Map 2 saved.")
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -153,8 +154,8 @@ map3 <- ggplot(map_trust, aes(x = long, y = lat, group = group, fill = trust_dev
   ) +
   map_theme
 
-ggsave("graphs/heatmap3_trust_deviation.png",
-       map3, width = 10, height = 6.5, dpi = 300)
+ggsave("heatmaps/trust_deviation.png",
+       map3, width = 10, height = 6.5, dpi = 300, create.dir = TRUE)
 message("✅ Map 3 saved.")
 
 message("\n✅ All 3 heatmaps saved ")
