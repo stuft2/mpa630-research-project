@@ -89,8 +89,8 @@ ggsave("graphs/trust_by_race.png",
 
 
 # ── GRAPH 3: Trust in Government by Income Category ───────────────────────────
-income_levels <- c("Under $25,000", "$25,000–$49,999",
-                   "$50,000–$99,999", "$100,000+")
+income_levels <- c("Under $25,000", "$25,000-$49,999",
+                   "$50,000-$99,999", "$100,000+")
 
 income_trust <- df %>%
   filter(!is.na(trust_clean), !is.na(income_category)) %>%
