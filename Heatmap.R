@@ -8,7 +8,7 @@ library(maps)
 library(viridis)
 
 # ── Load data ──────────────────────────────────────────────────────────────────
-df <- read.csv("/mnt/user-data/uploads/anes_all_cleaned_vars__3_.csv",
+df <- read.csv("anes_all_cleaned_vars.csv",
                stringsAsFactors = FALSE)
 
 # ── FIPS code → state name lookup ─────────────────────────────────────────────
@@ -93,7 +93,7 @@ map1 <- ggplot(map_trust, aes(x = long, y = lat, group = group, fill = mean_trus
   ) +
   map_theme
 
-ggsave("/mnt/user-data/outputs/heatmap1_mean_trust.png",
+ggsave("graphs/heatmap1_mean_trust.png",
        map1, width = 10, height = 6.5, dpi = 300)
 message("✅ Map 1 saved.")
 
@@ -119,7 +119,7 @@ map2 <- ggplot(map_trust, aes(x = long, y = lat, group = group, fill = pct_low))
   ) +
   map_theme
 
-ggsave("/mnt/user-data/outputs/heatmap2_pct_low_trust.png",
+ggsave("graphs/heatmap2_pct_low_trust.png",
        map2, width = 10, height = 6.5, dpi = 300)
 message("✅ Map 2 saved.")
 
@@ -153,8 +153,8 @@ map3 <- ggplot(map_trust, aes(x = long, y = lat, group = group, fill = trust_dev
   ) +
   map_theme
 
-ggsave("/mnt/user-data/outputs/heatmap3_trust_deviation.png",
+ggsave("graphs/heatmap3_trust_deviation.png",
        map3, width = 10, height = 6.5, dpi = 300)
 message("✅ Map 3 saved.")
 
-message("\n✅ All 3 heatmaps saved to /mnt/user-data/outputs/")
+message("\n✅ All 3 heatmaps saved ")
