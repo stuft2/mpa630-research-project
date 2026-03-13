@@ -31,8 +31,6 @@ dt <- anes |>
     elections_make_government_responsive = V241235
   )
 
-library(tidyverse)
-
 # helper: simple mode (lowercase name)
 get_mode <- function(v) {
   v <- v[!is.na(v)]
@@ -260,26 +258,11 @@ dt_clean <- dt |>
 dt_clean <- dt_clean |>
   select(matches("_clean$|_numeric$|_binary$|_category$|_simple$"))
 
-# filter to complete cases on key variables
-dt_complete <- dt_clean |>
-  filter(
-    !is.na(trust_numeric),
-    !is.na(income_clean),
-    !is.na(race_clean),
-    !is.na(education_clean)
-  )
-
-# diagnostics
-cat("Original rows:", nrow(dt), "\n")
-cat("Clean rows:", nrow(dt_complete), "\n")
-cat("Rows removed:", nrow(dt) - nrow(dt_complete), "\n")
-cat("Percent retained:", round(nrow(dt_complete) / nrow(dt) * 100, 1), "%\n")
-
 # quick summary
-print(summary(dt_complete |> select(trust_numeric, income_clean, age_clean, ideology_numeric)))
+print(summary(dt_clean |> select(trust_numeric, income_clean, age_clean, ideology_numeric)))
 
 # simple mode summary table
-vars <- names(dt_complete)
+vars <- names(dt_clean)
 results <- data.frame(
   variable = character(),
   n_nonmissing = integer(),
@@ -289,7 +272,7 @@ results <- data.frame(
   stringsAsFactors = FALSE
 )
 for (v in vars) {
-  vec <- dt_complete[[v]]
+  vec <- dt_clean[[v]]
   n_nonmiss <- sum(!is.na(vec))
   if (is.numeric(vec)) {
     mean_val <- ifelse(n_nonmiss > 0, round(mean(vec, na.rm = TRUE), 3), NA)
@@ -308,11 +291,9 @@ for (v in vars) {
     stringsAsFactors = FALSE
   ))
 }
-print(results, right = FALSE, row.names = FALSE)
+# print(results, right = FALSE, row.names = FALSE)
 
 # save outputs (adjust path if needed)
-write.csv(dt_complete, "anes_clean.csv", row.names = FALSE)
 write.csv(dt_clean, "anes_all_cleaned_vars.csv", row.names = FALSE)
 cat("\n=== Files saved to Desktop ===\n")
-cat("1. anes_clean.csv - Complete cases only\n")
 cat("2. anes_all_cleaned_vars.csv - All cases with cleaned variables\n")
