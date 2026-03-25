@@ -1,0 +1,52 @@
+"state_name","mean_trust","pct_low","n"
+"district of columbia",2.63,26.7,19
+"new mexico",3.22,58.6,40
+"mississippi",3.33,68.2,33
+"nevada",3.37,75,30
+"washington",3.37,70.5,125
+"new hampshire",3.37,68.4,27
+"california",3.45,74.2,406
+"virginia",3.46,78.3,130
+"illinois",3.46,74.6,198
+"massachusetts",3.47,77.5,115
+"iowa",3.48,73.3,69
+"new jersey",3.49,74.7,121
+"colorado",3.49,76.4,102
+"arizona",3.49,75.3,106
+"maryland",3.5,77.3,104
+"rhode island",3.5,75,14
+"vermont",3.5,75,12
+"new york",3.5,74.1,195
+"georgia",3.5,79.8,151
+"wisconsin",3.5,76.3,127
+"minnesota",3.5,78.4,105
+"oklahoma",3.51,73.3,45
+"indiana",3.54,81.4,127
+"pennsylvania",3.54,78.9,185
+"michigan",3.54,77.8,188
+"delaware",3.56,83.3,9
+"oregon",3.56,76.9,102
+"connecticut",3.56,81.5,85
+"florida",3.57,80.4,283
+"arkansas",3.57,80.5,56
+"north carolina",3.58,84.5,144
+"south carolina",3.58,79.7,107
+"kentucky",3.59,81.1,73
+"utah",3.6,82,67
+"texas",3.63,82.9,355
+"missouri",3.64,84.1,144
+"nebraska",3.64,78.9,25
+"ohio",3.66,80.9,173
+"hawaii",3.67,77.8,9
+"north dakota",3.67,93.8,27
+"alabama",3.68,85.5,85
+"kansas",3.69,86.5,68
+"south dakota",3.7,100,10
+"tennessee",3.73,86,130
+"idaho",3.75,85.7,36
+"maine",3.88,92.3,17
+"west virginia",3.91,90,22
+"montana",3.93,100,15
+"louisiana",4.09,97.5,46
+"alaska",4.25,100,4
+"wyoming",4.4,100,5

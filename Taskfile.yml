@@ -2,6 +2,8 @@ version: "3"
 
 vars:
   SCRIPT: "main.R"
+  MARKDOWN: "docs/memo.md"
+  DOCX: "docs/memo.docx"
 
 tasks:
   format:
@@ -18,6 +20,11 @@ tasks:
     desc: Run the main R script
     cmds:
       - Rscript "{{.SCRIPT}}"
+
+  docx:
+    desc: Convert a Markdown file to a Word document with pandoc
+    cmds:
+      - pandoc --resource-path="$(dirname "{{.MARKDOWN}}"):." "{{.MARKDOWN}}" -o "{{.DOCX}}"
 
   all:
     desc: Format, lint, and run

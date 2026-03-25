@@ -1,11 +1,16 @@
 # Assignment 3 – Descriptive Statistics: Bar Graphs
 # Load libraries
-library(ggplot2)
-library(dplyr)
+if (!require("pacman")) {
+  install.packages("pacman")
+  library(pacman)
+}
+p_load(ggplot2, dplyr)
 
 # ── Load data ──────────────────────────────────────────────────────────────────
 df <- read.csv("anes_all_cleaned_vars.csv",
                stringsAsFactors = FALSE)
+
+dir.create("graphs/descriptive_stats", recursive = TRUE, showWarnings = FALSE)
 
 # ── Shared theme ───────────────────────────────────────────────────────────────
 my_theme <- theme_minimal(base_size = 13) +
@@ -23,6 +28,14 @@ trust_levels <- c("Always", "Most of the time", "About half the time",
                   "Some of the time", "Never")
 trust_colors <- c("#2166ac", "#74add1", "#fee090", "#f46d43", "#d73027")
 
+write_summary <- function(data, file_name, title) {
+  out_path <- file.path("graphs", "descriptive_stats", file_name)
+  write.csv(data, out_path, row.names = FALSE)
+  message("\n", title)
+  print(data)
+  message("Saved descriptive statistics to: ", out_path)
+}
+
 
 # ── GRAPH 1: Trust in Government (Dependent Variable) ─────────────────────────
 trust_data <- df %>%
@@ -30,6 +43,9 @@ trust_data <- df %>%
   mutate(trust_clean = factor(trust_clean, levels = trust_levels)) %>%
   count(trust_clean) %>%
   mutate(pct = n / sum(n) * 100)
+
+trust_summary <- trust_data %>%
+  mutate(pct = round(pct, 1))
 
 g1 <- ggplot(trust_data, aes(x = trust_clean, y = pct, fill = trust_clean)) +
   geom_col(width = 0.65) +
@@ -46,6 +62,8 @@ g1 <- ggplot(trust_data, aes(x = trust_clean, y = pct, fill = trust_clean)) +
 
 ggsave("graphs/trust_gov.png",
        g1, width = 7, height = 5, dpi = 300)
+write_summary(trust_summary, "trust_gov_summary.csv",
+              "Descriptive statistics for Graph 1: Trust in Federal Government")
 
 
 # ── GRAPH 2: Trust in Government by Race ──────────────────────────────────────
@@ -68,6 +86,10 @@ race_trust <- df %>%
   summarise(mean_trust = mean(as.numeric(trust_clean), na.rm = TRUE),
             n = n(), .groups = "drop")
 
+race_summary <- race_trust %>%
+  arrange(mean_trust) %>%
+  mutate(mean_trust = round(mean_trust, 2))
+
 g2 <- ggplot(race_trust, aes(x = reorder(race_short, mean_trust),
                              y = mean_trust, fill = race_short)) +
   geom_col(width = 0.65) +
@@ -86,6 +108,8 @@ g2 <- ggplot(race_trust, aes(x = reorder(race_short, mean_trust),
 
 ggsave("graphs/trust_by_race.png",
        g2, width = 7, height = 5, dpi = 300)
+write_summary(race_summary, "trust_by_race_summary.csv",
+              "Descriptive statistics for Graph 2: Trust in Government by Race")
 
 
 # ── GRAPH 3: Trust in Government by Income Category ───────────────────────────
@@ -101,6 +125,9 @@ income_trust <- df %>%
   group_by(income_category) %>%
   summarise(mean_trust = mean(as.numeric(trust_clean), na.rm = TRUE),
             n = n(), .groups = "drop")
+
+income_summary <- income_trust %>%
+  mutate(mean_trust = round(mean_trust, 2))
 
 g3 <- ggplot(income_trust, aes(x = income_category, y = mean_trust,
                                fill = income_category)) +
@@ -120,6 +147,8 @@ g3 <- ggplot(income_trust, aes(x = income_category, y = mean_trust,
 
 ggsave("graphs/trust_by_income.png",
        g3, width = 7, height = 5, dpi = 300)
+write_summary(income_summary, "trust_by_income_summary.csv",
+              "Descriptive statistics for Graph 3: Trust in Government by Income")
 
 
 # ── GRAPH 4: Trust in Government by Education ─────────────────────────────────
@@ -135,6 +164,9 @@ edu_trust <- df %>%
   group_by(education_category) %>%
   summarise(mean_trust = mean(as.numeric(trust_clean), na.rm = TRUE),
             n = n(), .groups = "drop")
+
+education_summary <- edu_trust %>%
+  mutate(mean_trust = round(mean_trust, 2))
 
 g4 <- ggplot(edu_trust, aes(x = education_category, y = mean_trust,
                             fill = education_category)) +
@@ -154,6 +186,8 @@ g4 <- ggplot(edu_trust, aes(x = education_category, y = mean_trust,
 
 ggsave("graphs/trust_by_education.png",
        g4, width = 7, height = 5, dpi = 300)
+write_summary(education_summary, "trust_by_education_summary.csv",
+              "Descriptive statistics for Graph 4: Trust in Government by Education")
 
 
 # ── GRAPH 5: Trust in Government by Age Group ─────────────────────────────────
@@ -169,6 +203,9 @@ age_trust <- df %>%
   group_by(age_group) %>%
   summarise(mean_trust = mean(as.numeric(trust_clean), na.rm = TRUE),
             n = n(), .groups = "drop")
+
+age_summary <- age_trust %>%
+  mutate(mean_trust = round(mean_trust, 2))
 
 g5 <- ggplot(age_trust, aes(x = age_group, y = mean_trust, fill = age_group)) +
   geom_col(width = 0.55) +
@@ -188,6 +225,8 @@ g5 <- ggplot(age_trust, aes(x = age_group, y = mean_trust, fill = age_group)) +
 
 ggsave("graphs/trust_by_age.png",
        g5, width = 6, height = 5, dpi = 300)
+write_summary(age_summary, "trust_by_age_summary.csv",
+              "Descriptive statistics for Graph 5: Trust in Government by Age")
 
 
 # ── GRAPH 6: Trust in Government by Party Identification ──────────────────────
@@ -208,6 +247,10 @@ party_trust <- df %>%
   summarise(mean_trust = mean(as.numeric(trust_clean), na.rm = TRUE),
             n = n(), .groups = "drop") %>%
   mutate(party_short = party_short[match(party_clean, party_levels)])
+
+party_summary <- party_trust %>%
+  select(party_clean, party_short, n, mean_trust) %>%
+  mutate(mean_trust = round(mean_trust, 2))
 
 party_colors <- c("#2166ac","#74add1","#abd9e9",
                   "#ffffbf",
@@ -232,5 +275,7 @@ g6 <- ggplot(party_trust, aes(x = party_short, y = mean_trust, fill = party_clea
 
 ggsave("graphs/trust_by_party.png",
        g6, width = 8, height = 5, dpi = 300)
+write_summary(party_summary, "trust_by_party_summary.csv",
+              "Descriptive statistics for Graph 6: Trust in Government by Party")
 
 message("✅ All 6 graphs saved ")
