@@ -1,12 +1,19 @@
-if (!require("pacman")) {
+#Assignment 4
+#Author: Allie Sensinger, Alan Canfield, Bailey Whitaker, Lori Sheets, Spencer Tuft
+#Date: 04/2026
+
+#####----------------------------------------------#####
+#0. SYSTEM SETUP
+
+if(!require("pacman")) {
   install.packages("pacman")
   library(pacman)
 }
-p_load(tidyverse, dplyr, data.table, ggplot2, fastDummies, readxl)
+
+p_load(tidyverse, dplyr, data.table, ggplot2, fastDummies, readxl, Hmisc, fixest, performance)
 
 # Load ANES data set
-anes <- read_csv("anes_all_cleaned_vars.csv")
-# --- Recode variables to match class structure ---
+dt <- read_csv("anes_all_cleaned_vars.csv")
 
 # female dummy (1 = Female, 0 = Male)
 dt$female <- ifelse(dt$sex_clean == "Female", 1,
@@ -33,10 +40,32 @@ dt$race <- relevel(factor(dt$race_clean), ref = "White, non-Hispanic")
 dt$congress_approval <- ifelse(dt$congress_binary_numeric == 1, 1,
                                ifelse(dt$congress_binary_numeric == 2, 0, NA))
 
-# Inspect key variables
-unique(dt$educ)
-summary(dt$trust_numeric)
-hist(dt$trust_numeric)
-table(dt$trust_binary, useNA = "ifany")
-table(dt$race, useNA = "ifany")
-table(dt$female, useNA = "ifany")
+#####----------------------------------------------#####
+
+#1. Regression 1: LPM model
+
+lpm = feols(conservative ~ educ+female+age, data = dt, vcov = "hetero")
+summary(lpm)
+
+
+#2. Regression 2: Logit Model
+
+logit <- feglm(conservative ~ educ + female + age,
+               data = dt,
+               family = binomial(link = "logit"))
+
+summary(logit, vcov = "hetero")
+
+#transform coefficients
+b <- coef(logit)["educHigher education complete"]
+exp_b <- exp(b)
+pct_change <- (exp_b - 1) * 100
+
+
+#3. Robustness check:
+#a) Collinearity
+check_collinearity(lpm)
+
+#b) Change of controls:
+controls = feols(conservative ~ educ+female+age+conservative+reelected+married, data = dt, vcov = "hetero")
+summary(controls)
