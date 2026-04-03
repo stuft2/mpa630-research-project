@@ -153,7 +153,14 @@ dt_clean <- dt |>
   ) |>
   # 9) age
   mutate(
-    age_clean = ifelse(age >= 18 & age <= 80, age, NA_real_)
+    age_clean = ifelse(age >= 18 & age <= 80, age, NA_real_),
+    age_category = case_when(
+      age >= 18 & age <= 29 ~ "18-29",
+      age >= 30 & age <= 44 ~ "30-44",
+      age >= 45 & age <= 64 ~ "45-64",
+      age >= 65 & age <= 80 ~ "65+",
+      TRUE ~ NA_character_
+    )
   ) |>
   # 10) sex
   mutate(
