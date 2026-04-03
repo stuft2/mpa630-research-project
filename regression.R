@@ -1,8 +1,15 @@
-#####----------------------------------------------#####
-#Assignment 4
-#Author: Allie Sensinger, Alan Canfield, Bailey Whitaker, Lori Sheets, Spencer Tuft
-#Date: 04/2026
-#####----------------------------------------------#####
+##### ----------------------------------------------#####
+# Assignment 4
+# Author: Allie Sensinger, Alan Canfield, Bailey Whitaker, Lori Sheets, Spencer Tuft
+# Date: 04/2026
+##### ----------------------------------------------#####
+
+if (!require("pacman")) {
+  install.packages("pacman")
+  library(pacman)
+}
+
+p_load(tidyverse, dplyr, data.table, ggplot2, fastDummies, readxl, Hmisc, fixest, performance)
 
 # Load cleaned ANES data
 dt <- read_csv("anes_all_cleaned_vars.csv", show_col_types = FALSE)
