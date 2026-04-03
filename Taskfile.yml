@@ -1,7 +1,7 @@
 version: "3"
 
 vars:
-  SCRIPT: "main.R"
+  SCRIPT: "regression.R"
   MARKDOWN: "docs/memo.md"
   DOCX: "docs/memo.docx"
 
