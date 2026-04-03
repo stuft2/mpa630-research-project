@@ -57,7 +57,7 @@ dt_clean <- dt |>
     ),
     trust_binary = case_when(
       trust_federal_government %in% c(1, 2) ~ 1,
-      trust_federal_government %in% c(4, 5) ~ 0,
+      trust_federal_government %in% c(3, 4, 5) ~ 0,
       TRUE ~ NA_real_
     )
   ) |>
