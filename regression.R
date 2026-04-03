@@ -19,8 +19,7 @@ p_load(tidyverse, dplyr, lmtest, sandwich, car, ggplot2)
 
 # 1. LOAD AND INSPECT DATA -----------------------------------------------
 
-dt <- read_csv("C:/Users/Allie/Downloads/anes_all_cleaned_vars (6).csv")
-View(anes_all_cleaned_vars_6_)
+dt <- read_csv("anes_all_cleaned_vars.csv")
 
 # Quick look at key variables
 cat("\n--- Trust Binary ---\n")
