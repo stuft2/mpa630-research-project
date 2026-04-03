@@ -213,6 +213,7 @@ cat("\nMcFadden Pseudo R-squared:", round(pseudo_r2, 4), "\n")
 
 cat("\n--- VIF: Full LPM ---\n")
 vif(lpm_full)
+check_collinearity(1pm_full)
 # All values well below 10 = no multicollinearity problem.
 
 
