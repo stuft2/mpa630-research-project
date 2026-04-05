@@ -56,11 +56,6 @@ cat("\n\n-------- Collinearity Check --------\n\n")
 check_collinearity(lpm)
 
 # b) Change of controls
-dt <- dt |>
-  mutate(
-    marital = relevel(factor(marital_simple), ref = "Married")
-  )
-
 cat("\n\n-------- LPM Model Summary (with controls) --------\n\n")
 controls <- feols(
   trust_binary ~ income + race + education + age + sex + party,
