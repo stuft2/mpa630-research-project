@@ -1,52 +1,52 @@
 "state_name","n","pct_low","mean_trust"
-"alaska",4,100,4.25
-"montana",15,100,3.93
-"south dakota",10,100,3.7
-"wyoming",5,100,4.4
-"louisiana",46,97.5,4.09
-"north dakota",27,93.8,3.67
-"maine",17,92.3,3.88
-"west virginia",22,90,3.91
-"kansas",68,86.5,3.69
-"tennessee",130,86,3.73
-"idaho",36,85.7,3.75
-"alabama",85,85.5,3.68
-"north carolina",144,84.5,3.58
-"missouri",144,84.1,3.64
-"delaware",9,83.3,3.56
-"texas",355,82.9,3.63
-"utah",67,82,3.6
-"connecticut",85,81.5,3.56
-"indiana",127,81.4,3.54
-"kentucky",73,81.1,3.59
-"ohio",173,80.9,3.66
-"arkansas",56,80.5,3.57
-"florida",283,80.4,3.57
-"georgia",151,79.8,3.5
-"south carolina",107,79.7,3.58
-"nebraska",25,78.9,3.64
-"pennsylvania",185,78.9,3.54
-"minnesota",105,78.4,3.5
-"virginia",130,78.3,3.46
-"hawaii",9,77.8,3.67
-"michigan",188,77.8,3.54
-"massachusetts",115,77.5,3.47
-"maryland",104,77.3,3.5
-"oregon",102,76.9,3.56
-"colorado",102,76.4,3.49
-"wisconsin",127,76.3,3.5
-"arizona",106,75.3,3.49
-"nevada",30,75,3.37
-"rhode island",14,75,3.5
-"vermont",12,75,3.5
-"new jersey",121,74.7,3.49
-"illinois",198,74.6,3.46
-"california",406,74.2,3.45
-"new york",195,74.1,3.5
-"iowa",69,73.3,3.48
-"oklahoma",45,73.3,3.51
-"washington",125,70.5,3.37
-"new hampshire",27,68.4,3.37
-"mississippi",33,68.2,3.33
-"new mexico",40,58.6,3.22
-"district of columbia",19,26.7,2.63
+"alaska",4,100,1.75
+"montana",15,100,2.07
+"south dakota",10,100,2.3
+"wyoming",5,100,1.6
+"louisiana",46,97.8,1.91
+"north dakota",27,96.3,2.33
+"maine",17,94.1,2.12
+"west virginia",22,90.9,2.09
+"kansas",68,89.7,2.31
+"north carolina",144,89.6,2.42
+"alabama",85,89.4,2.32
+"tennessee",130,89.2,2.27
+"delaware",9,88.9,2.44
+"idaho",36,88.9,2.25
+"connecticut",85,88.2,2.44
+"missouri",144,88.2,2.36
+"texas",355,88.2,2.37
+"indiana",127,87.4,2.46
+"utah",67,86.6,2.4
+"kentucky",73,86.3,2.41
+"florida",283,86.2,2.43
+"virginia",130,86.2,2.54
+"georgia",151,86.1,2.5
+"south carolina",107,86,2.42
+"arkansas",56,85.7,2.43
+"pennsylvania",185,85.4,2.46
+"ohio",173,85,2.34
+"minnesota",105,84.8,2.5
+"michigan",188,84,2.46
+"nebraska",25,84,2.36
+"maryland",104,83.7,2.5
+"colorado",102,83.3,2.51
+"nevada",30,83.3,2.63
+"arizona",106,83,2.51
+"wisconsin",127,82.7,2.5
+"iowa",69,82.6,2.52
+"massachusetts",115,82.6,2.53
+"oregon",102,82.4,2.44
+"illinois",198,82.3,2.54
+"oklahoma",45,82.2,2.49
+"new jersey",121,81,2.51
+"california",406,80.5,2.55
+"new york",195,80.5,2.5
+"washington",125,79.2,2.63
+"mississippi",33,78.8,2.67
+"rhode island",14,78.6,2.5
+"hawaii",9,77.8,2.33
+"new hampshire",27,77.8,2.63
+"vermont",12,75,2.5
+"new mexico",40,70,2.78
+"district of columbia",19,42.1,3.37

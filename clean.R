@@ -53,7 +53,7 @@ dt_clean <- dt |>
       TRUE ~ NA_character_
     ),
     trust_numeric = ifelse(trust_federal_government %in% 1:5,
-      trust_federal_government, NA_real_
+      6 - trust_federal_government, NA_real_
     ),
     trust_binary = case_when(
       trust_federal_government %in% c(1, 2) ~ 1,

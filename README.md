@@ -34,7 +34,7 @@ How does trust in government vary by income, race, and education?
 |----------|----------------|----------------|------|--------|------|
 | **Dependent Variables** ||||||
 | trust_clean | Always; Most of the time; About half the time; Some of the time; Never | 4,928 | — | — | Some of the time |
-| trust_numeric | 1–5 | 4,928 | 3.56 | 4 | 4 |
+| trust_numeric | 1–5 (reversed: 1 = Never, 5 = Always) | 4,928 | 2.44 | 2 | 2 |
 | trust_binary | 1 = High Trust (Always/Most of the time); 0 = Low Trust (Some/Never) | 3,557 | 0.21 | 0 | 0 |
 | big_interests_clean | Run by big interests; For benefit of all | 4,894 | — | — | Run by big interests |
 | big_interests_numeric | 1–2 | 4,894 | 1.17 | 1 | 1 |
@@ -85,7 +85,7 @@ How does trust in government vary by income, race, and education?
    - `-2` = DK/RF
    - `-1` = Inapplicable
    - `99` = Haven't thought much about this
-7. Recoded trust variables into a binary measure: **High Trust** vs. **Low Trust**.
+7. Reverse-coded `trust_numeric` so higher values indicate more trust (`1 = Never`, `5 = Always`) and recoded `trust_binary` into **High Trust** vs. **Low Trust**.
 8. Collapsed income categories to reduce the number of brackets.
 9. Ran verification code to assess how much data was removed after recoding.
 10. Reran `summary()`, `glimpse()`, and `names()` on the cleaned `anes` object to confirm results.

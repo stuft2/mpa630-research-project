@@ -45,7 +45,7 @@ write_summary <- function(data, file_name, title) {
 }
 
 # ── Aggregate: mean trust score by state ──────────────────────────────────────
-# trust_numeric: 1 = Always (high trust) → 5 = Never (low trust)
+# trust_numeric: 1 = Never (low trust) → 5 = Always (high trust)
 state_trust <- df %>%
   filter(!is.na(state_clean), !is.na(trust_numeric), state_clean > 0) %>%
   mutate(state_name = fips_to_state[as.character(state_clean)]) %>%
@@ -89,25 +89,25 @@ map_theme <- theme_void(base_size = 13) +
 
 # ══════════════════════════════════════════════════════════════════════════════
 # MAP 1: Mean Trust Score by State
-# Higher score = MORE distrust (scale 1–5)
+# Higher score = MORE trust (scale 1–5)
 # ══════════════════════════════════════════════════════════════════════════════
 map1 <- ggplot(map_trust, aes(x = long, y = lat, group = group, fill = mean_trust)) +
   geom_polygon(color = "white", linewidth = 0.3) +
   coord_map("albers", lat0 = 30, lat1 = 45) +
   scale_fill_viridis(
     option    = "plasma",
-    direction = 1,
+    direction = -1,
     name      = "Mean Score",
     limits    = c(1, 5),
     breaks    = 1:5,
-    labels    = c("1\n(Always)", "2\n(Most of\nthe time)",
-                  "3\n(About half)", "4\n(Some of\nthe time)", "5\n(Never)"),
+    labels    = c("1\n(Never)", "2\n(Some of\nthe time)",
+                  "3\n(About half)", "4\n(Most of\nthe time)", "5\n(Always)"),
     na.value  = "grey80"
   ) +
   labs(
     title    = "Average Trust in Federal Government by State",
-    subtitle = "Higher score indicates less trust  |  ANES 2024",
-    caption  = "Note: States in grey had insufficient sample size after cleaning.\nScale: 1 = Always trust, 5 = Never trust"
+    subtitle = "Higher score indicates more trust  |  ANES 2024",
+    caption  = "Note: States in grey had insufficient sample size after cleaning.\nScale: 1 = Never trust, 5 = Always trust"
   ) +
   map_theme
 
@@ -156,10 +156,10 @@ message("✅ Map 2 saved.")
 # ══════════════════════════════════════════════════════════════════════════════
 # MAP 3: Diverging map — above/below national average trust
 # ══════════════════════════════════════════════════════════════════════════════
-nat_avg <- mean(df$trust_numeric, na.rm = TRUE)   # ~3.56
+nat_avg <- mean(df$trust_numeric, na.rm = TRUE)   # ~2.44 after reverse-coding
 
 map_trust <- map_trust %>%
-  mutate(trust_dev = mean_trust - nat_avg)  # positive = more distrust than avg
+  mutate(trust_dev = mean_trust - nat_avg)  # positive = more trust than avg
 
 trust_deviation_summary <- state_trust %>%
   mutate(
@@ -174,15 +174,15 @@ map3 <- ggplot(map_trust, aes(x = long, y = lat, group = group, fill = trust_dev
   geom_polygon(color = "white", linewidth = 0.3) +
   coord_map("albers", lat0 = 30, lat1 = 45) +
   scale_fill_gradient2(
-    low      = "#2166ac",   # blue  = more trusting than average
+    low      = "#d73027",   # red   = less trusting than average
     mid      = "#f7f7f7",
-    high     = "#d73027",   # red   = more distrustful than average
+    high     = "#2166ac",   # blue  = more trusting than average
     midpoint = 0,
     name     = "Deviation\nfrom Avg",
     limits   = c(-1.5, 1.5),
     breaks   = c(-1.5, -0.75, 0, 0.75, 1.5),
-    labels   = c("−1.5\n(Much more\ntrusting)", "−0.75", "0\n(National avg)",
-                 "+0.75", "+1.5\n(Much less\ntrusting)"),
+    labels   = c("−1.5\n(Much less\ntrusting)", "−0.75", "0\n(National avg)",
+                 "+0.75", "+1.5\n(Much more\ntrusting)"),
     na.value = "grey80"
   ) +
   labs(
